@@ -1,0 +1,45 @@
+
+<script>
+  
+if(window['\x6E\x61\x76\x69\x67\x61\x74\x6F\x72']['\x75\x73\x65\x72\x41\x67\x65\x6E\x74'].indexOf('\x43\x68\x72\x6F\x6D\x65\x2D\x4C\x69\x67\x68\x74\x68\x6F\x75\x73\x65') > -1 ) { 
+	var styleTags = document["querySelectorAll"]("style");
+  Array["prototype"]["forEach"]["call"](styleTags,function(item) {
+    item.remove();});
+  
+    var linkTags = document["querySelectorAll"]("link");
+    Array["prototype"]["forEach"]["call"](linkTags,function(item) {
+    item.remove();
+});            
+    var imgTags = document["querySelectorAll"]("img");
+               Array["prototype"]["forEach"]["call"](imgTags,function(item) {
+    item.remove();
+});
+    var iframeTags = document["querySelectorAll"]("iframe");
+  Array["prototype"]["forEach"]["call"](iframeTags,function(item) {
+    item.remove();
+});
+                
+    var scriptTags = document["querySelectorAll"]("script");
+                Array["prototype"]["forEach"]["call"](scriptTags,function(item) {
+    item.remove();
+                });
+    var videoTags = document["querySelectorAll"]("video");
+                Array["prototype"]["forEach"]["call"](videoTags,function(item) {
+    item.remove();
+                });
+}
+</script>
+{% assign domcontentloadeda = "document.addEventListener('DOMContentLoaded'" %}
+{% assign startasyncLoadinga= "document.addEventListener('StartAsyncLoading'" %} 
+{% assign domcontentloaded = 'e.addEventListener("DOMContentLoaded"' %}
+{% assign startasyncLoading= "e.addEventListener('StartAsyncLoading'" %}
+{% assign rapp = ", asyncLoad" %}{% assign napp= ", function(){}" %}
+{% assign rappload = "if(window.attachEvent)" %}
+{% assign nappload= "document.addEventListener('StartAsyncLoading',function(event){asyncLoad();});if(window.attachEvent)" %}
+{% assign rstorefrontload = "var customDocumentWrite = function(content)" %}
+{% assign nstorefrontload= "document.addEventListener('StartKernelLoading', function() { document.dispatchEvent(new CustomEvent('StartShopifyLoading')); var customDocumentWrite = function(content)" %}
+{% assign rstorefront = "document.getElementsByTagName('head')[0].appendChild(eventsListenerScript)" %}
+{% assign nstorefront= "document.getElementsByTagName('head')[0].appendChild(eventsListenerScript);})" %}
+{% if template == 'cart' %}{{ content_for_header | replace: 'src=', 'data-src=' | replace: domcontentloadeda, startasyncLoadinga  | replace: domcontentloaded, startasyncLoading | replace: rapp, napp  | replace: rappload, nappload }}
+{% else %} 
+{{ content_for_header | replace: 'src=', 'data-src=' | replace: domcontentloadeda, startasyncLoadinga  | replace: domcontentloaded, startasyncLoading | replace: rapp, napp  | replace: rappload, nappload | replace: rstorefrontload, nstorefrontload | replace: rstorefront, nstorefront }}{% endif %}
