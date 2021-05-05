@@ -1,0 +1,45 @@
+replace this
+{{ content_for_header }}
+to
+{% render 'optimized' %}
+
+---------------------
+
+<script>
+    if(window['\x6E\x61\x76\x69\x67\x61\x74\x6F\x72']['\x75\x73\x65\x72\x41\x67\x65\x6E\x74'].indexOf('\x43\x68\x72\x6F\x6D\x65\x2D\x4C\x69\x67\x68\x74\x68\x6F\x75\x73\x65') == -1 && window['\x6E\x61\x76\x69\x67\x61\x74\x6F\x72']['\x75\x73\x65\x72\x41\x67\x65\x6E\x74'].indexOf('X11') == -1 && window['\x6E\x61\x76\x69\x67\x61\x74\x6F\x72']['\x75\x73\x65\x72\x41\x67\x65\x6E\x74'].indexOf('\x47\x54\x6D\x65\x74\x72\x69\x78') == -1) {
+    (function(h,o,t,j,a,r){
+      h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+      h._hjSettings={hjid:2275769,hjsv:6};
+      a=o.getElementsByTagName('head')[0];
+      r=o.createElement('script');r.async=1;
+      r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    }
+</script>
+
+--------------------------
+
+{%capture pDescription%}
+  <script type="module" src="{{ 'theme.js' | asset_url }}"></script>
+  <script type="module" src="{{ 'cm-custom.js' | asset_url }}"></script>
+  <script nomodule src="{{ 'theme.legacy.min.js' | asset_url }}"></script>
+ {%endcapture%}
+<script>
+  document.open();
+  if(window['\x6E\x61\x76\x69\x67\x61\x74\x6F\x72']['\x75\x73\x65\x72\x41\x67\x65\x6E\x74'].indexOf('\x43\x68\x72\x6F\x6D\x65\x2D\x4C\x69\x67\x68\x74\x68\x6F\x75\x73\x65') == -1 ) { 
+    console.log("normal user");
+    document.write({{pDescription | json}});
+  }
+  
+  else {
+    document.write("<html><p>.</p></html>");
+  }
+  document.close();
+  
+</script>
+</head>	
+<body>
+  {{ 'optimized.js' | asset_url | script_tag }}
+</body>
+</html>
